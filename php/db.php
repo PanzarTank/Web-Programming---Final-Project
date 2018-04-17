@@ -1,9 +1,8 @@
 <?php
-session_start();
-$servername = "localhost";
-$username = "pvlahos1";
-$password = "pvlahos1";
-$dbName = "pvlahos1";
+$servername = "csc4370web.ckjcl6vkh8wc.us-east-2.rds.amazonaws.com";
+$username = "HaiThuy";
+$password = "csc4370web";
+$dbName = "csc4370web";
 
 //Create connection
 $conn = new mysqli($servername, $username, $password, $dbName);

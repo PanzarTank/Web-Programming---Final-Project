@@ -14,7 +14,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Paul Vlahos / pvlahos1</title>
+        <title>Online Game Store</title>
 
         <!-- JQuery -->
         <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
@@ -50,7 +50,7 @@
 
         <style>
             .card-body {
-                height: 208px;
+                height: 350px;
             }
         </style>
 
@@ -64,7 +64,7 @@
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="#">Online Fruit Store</a>
+                <a class="navbar-brand" href="#">Online Game Store</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -199,10 +199,10 @@
 
                 <div class="col-lg-3">
 
-                    <h1 class="my-4">Project 2</h1>
+                    <h1 class="my-4">Final Project</h1>
                     <div class="list-group">
-                        <a href="Home.php" class="list-group-item">Fruits</a>
-                        <a href="#" class="list-group-item">Vegetables (NYI)</a>
+                        <a href="Home.php" class="list-group-item">Games</a>
+                       <!-- <a href="#" class="list-group-item">Vegetables (NYI)</a> -->
                     </div>
 
                 </div>
@@ -218,13 +218,13 @@
                         </ol>
                         <div class="carousel-inner" role="listbox">
                             <div class="carousel-item active">
-                                <img class="d-block img-fluid" src="Media/fruits1.jpg" alt="First slide">
+                                <img class="d-block img-fluid" src="https://i.imgur.com/pYbr9px.jpg" alt="First slide">
                             </div>
                             <div class="carousel-item">
-                                <img class="d-block img-fluid" src="Media/fruits2.jpg" alt="Second slide">
+                                <img class="d-block img-fluid" src="https://i.imgur.com/CbDLFCd.jpg" alt="Second slide">
                             </div>
                             <div class="carousel-item">
-                                <img class="d-block img-fluid" src="Media/fruits3.jpg" alt="Third slide">
+                                <img class="d-block img-fluid" src="https://i.imgur.com/vhkenK3.jpg" alt="Third slide">
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -238,175 +238,8 @@
                     </div>
 
                     <div class="row">
-
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="Media/apples.jpg" alt="">
-                                </a>
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <a href="#">Apples</a>
-                                    </h4>
-                                    <?php
-                                $sql = "SELECT * FROM ITEMS WHERE ITEM=('Apple')";
-                                $result = $conn->query($sql);
-                                
-                                $row = $result->fetch_row();
-                                $item = $row[0];
-                                $price = $row[1];
-                                $quantity = $row[2];
-                                echo "<h5>$$price / Apple</h5>";
-                                echo "<h6>Quantity: $quantity</h6>";
-                                ?>
-                                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                                </div>
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-info btn-outline btn-block" data-toggle="modal" data-target="#myModal" value="buy">Buy Now</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="Media/oranges.jpg" alt="">
-                                </a>
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <a href="#">Oranges</a>
-                                    </h4>
-                                    <?php
-                                $sql = "SELECT * FROM ITEMS WHERE ITEM=('Orange')";
-                                $result = $conn->query($sql);
-                                
-                                $row = $result->fetch_row();
-                                $item = $row[0];
-                                $price = $row[1];
-                                $quantity = $row[2];
-                                echo "<h5>$$price / Orange</h5>";
-                                echo "<h6>Quantity: $quantity</h6>";
-                                ?>
-                                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                                </div>
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-info btn-outline btn-block" data-toggle="modal" data-target="#myModal" value="buy">Buy Now</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="Media/bananas.jpg" alt="">
-                                </a>
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <a href="#">Bananas</a>
-                                    </h4>
-                                    <?php
-                                $sql = "SELECT * FROM ITEMS WHERE ITEM=('Banana')";
-                                $result = $conn->query($sql);
-                                
-                                $row = $result->fetch_row();
-                                $item = $row[0];
-                                $price = $row[1];
-                                $quantity = $row[2];
-                                echo "<h5>$$price / Hand</h5>";
-                                echo "<h6>Quantity: $quantity</h6>";
-                                ?>
-                                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                                </div>
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-info btn-outline btn-block" data-toggle="modal" data-target="#myModal" value="buy">Buy Now</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="Media/grapes.jpg" alt="">
-                                </a>
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <a href="#">Grapes</a>
-                                    </h4>
-                                    <?php
-                                $sql = "SELECT * FROM ITEMS WHERE ITEM=('Grape')";
-                                $result = $conn->query($sql);
-                                
-                                $row = $result->fetch_row();
-                                $item = $row[0];
-                                $price = $row[1];
-                                $quantity = $row[2];
-                                echo "<h5>$$price / Bushel</h5>";
-                                echo "<h6>Quantity: $quantity</h6>";
-                                ?>
-                                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                                </div>
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-info btn-outline btn-block" data-toggle="modal" data-target="#myModal" value="buy">Buy Now</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="Media/pineapples.jpg" alt="">
-                                </a>
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <a href="#">Pineapples</a>
-                                    </h4>
-                                    <?php
-                                $sql = "SELECT * FROM ITEMS WHERE ITEM=('Pineapple')";
-                                $result = $conn->query($sql);
-                                
-                                $row = $result->fetch_row();
-                                $item = $row[0];
-                                $price = $row[1];
-                                $quantity = $row[2];
-                                echo "<h5>$$price / Pineapple</h5>";
-                                echo "<h6>Quantity: $quantity</h6>";
-                                ?>
-                                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                                </div>
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-info btn-outline btn-block" data-toggle="modal" data-target="#myModal" value="buy">Buy Now</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <div class="card">
-                                <a href="#">
-                                    <img class="card-img-top" src="Media/mangos.png" alt="">
-                                </a>
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <a href="#">Mangos</a>
-                                    </h4>
-                                    <?php
-                                $sql = "SELECT * FROM ITEMS WHERE ITEM=('Mango')";
-                                $result = $conn->query($sql);
-                                
-                                $row = $result->fetch_row();
-                                $item = $row[0];
-                                $price = $row[1];
-                                $quantity = $row[2];
-                                echo "<h5>$$price / Mango</h5>";
-                                echo "<h6>Quantity: $quantity</h6>";
-                                $conn->close();
-                                ?>
-                                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                                </div>
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-info btn-outline btn-block" data-toggle="modal" data-target="#myModal" value="buy">Buy Now</button>
-                                </div>
-                            </div>
-                        </div>
+						<?php include "php/generateInventory.php" ?>
+                    </div>
 
                     </div>
                     <!-- /.row -->
