@@ -6,6 +6,7 @@
 	{
 		while($row = $result->fetch_assoc()) 
 		{
+			$itemID = $row["itemID"];
 			$name = $row["itemName"];
 			$price = $row["itemPrice"];
 			$description = $row["itemDescription"];
@@ -19,7 +20,7 @@
 					</a>
 					<div class=\"card-body\">
 						<h4 class=\"card-title\">
-							<a href=\"#\">$name</a>
+							<a href=\"Item?id=$itemID\">$name</a>
 						</h4>
 
 					<h5>$$price</h5>
@@ -27,7 +28,7 @@
 							<p class=\"card-text\">$description</p>
 					</div>
 					<div class=\"card-footer\">
-						<button type=\"submit\" class=\"btn btn-info btn-outline btn-block\" data-toggle=\"modal\" data-target=\"#myModal\" value=\"buy\">Buy Now</button>
+					<button type=\"submit\" class=\"btn btn-info btn-outline btn-block\" onclick=\"window.location.href='Item?id=$itemID'\">View Item</button>
 					</div>
 				</div>
 			</div>";
