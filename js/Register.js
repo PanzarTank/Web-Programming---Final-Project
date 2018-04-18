@@ -1,4 +1,21 @@
 function register() {
+    var firstName = document.getElementById("signupFName").value;
+    var lastName = document.getElementById("signupLName").value;
+    var email = document.getElementById("signupEmail").value;
+    var password = document.getElementById("signupPassword").value;
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+
+        if (errorCode === 'auth/wrong-password') {
+            alert('Wrong password.');
+        } else {
+            alert(errorMessage);
+        }
+        console.log(error);
+    });
+
+    /*
     var data = $("#signup-nav").serialize();
     event.preventDefault();
 
@@ -25,5 +42,5 @@ function register() {
             }
         }
     });
-    return false;
+    return false; */
 }

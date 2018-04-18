@@ -1,4 +1,23 @@
-function submitForm() {
+function login() {
+    var firstName = document.getElementById("signupFName").value;
+    var lastName = document.getElementById("signupLName").value;
+    var email = document.getElementById("loginEmail").value;
+    var password = document.getElementById("loginPassword").value;
+    alert("email: " + email + "\n" + "password: " + password);
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+
+        if (errorCode === 'auth/wrong-password') {
+            alert('Wrong password.');
+        } else {
+            alert(errorMessage);
+        }
+        console.log(error);
+    });
+
+    /*
+
     var data = $("#login-nav").serialize();
     event.preventDefault();
 
@@ -24,5 +43,23 @@ function submitForm() {
             }
         }
     });
-    return false;
+    return false; */
 }
+
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+        // User is signed in.
+        alert("State changed fam")
+        var displayName = user.displayName;
+        var email = user.email;
+        var emailVerified = user.emailVerified;
+        var photoURL = user.photoURL;
+        var isAnonymous = user.isAnonymous;
+        var uid = user.uid;
+        var providerData = user.providerData;
+        // ...
+    } else {
+        // User is signed out.
+        // ...
+    }
+});

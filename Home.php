@@ -8,7 +8,7 @@
     <html lang="en">
 
     <head>
-	
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
@@ -25,10 +25,26 @@
         <link rel="stylesheet" href="css/p2css.css" rel="stylesheet">
 
         <!-- Custom Scripts -->
+        <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-database.js"></script>
+
+        <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyD06ne1IJ8AdpYBdAGS3zIs3cimSuzlQ2Y",
+                authDomain: "web-programming-final-pr-dccc6.firebaseapp.com",
+                databaseURL: "https://web-programming-final-pr-dccc6.firebaseio.com",
+                projectId: "web-programming-final-pr-dccc6",
+                storageBucket: "",
+                messagingSenderId: "107415577509"
+            };
+            firebase.initializeApp(config);
+        </script>
+
         <script type="text/javascript" src="js/Login.js"></script>
-
         <script type="text/javascript" src="js/Register.js"></script>
-
         <script type="text/javascript" src="js/PriceCalc.js"></script>
 
         <!-- Popper JS -->
@@ -76,9 +92,9 @@
                                 <b>Login</b>
                                 <b class="caret"></b>
                             </a>
-                  
-						  <ul id="login-dp" class="dropdown-menu">      
-						  <li>
+
+                            <ul id="login-dp" class="dropdown-menu">
+                                <li>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <!--
@@ -95,7 +111,7 @@
                                             </div>
                                             or
 									-->
-                                            <form class="form" role="form" method="post" accept-charset="UTF-8" id="login-nav">
+                                            <div class="form" role="form" method="post" accept-charset="UTF-8" id="login-nav">
                                                 <div class="form-group">
                                                     <label class="sr-only" for="exampleInputEmail2">Email address</label>
                                                     <input type="email" name="loginEmail" id="loginEmail" class="form-control" placeholder="Email address" required>
@@ -108,14 +124,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <button type="submit" onclick="submitForm()" class="btn btn-success btn-outline btn-block" name="Login" id="Login" value="Login">
+                                                    <button onclick="login()" class="btn btn-success btn-outline btn-block" name="Login" id="Login" value="Login">
                                                         Sign in </button>
                                                 </div>
                                                 <div class="checkbox">
                                                     <label>
                                                         <input type="checkbox"> Keep me logged-in</label>
                                                 </div>
-                                            </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </li>
@@ -130,7 +146,11 @@
                                 <form class="form" role="form" method="post" accept-charset="UTF-8" id="signup-nav">
                                     <div class="form-group">
                                         <label class="sr-only" for="exampleInputName2">First Name</label>
-                                        <input type="text" name="signupName" id="signupName" class="form-control" placeholder="First Name" required>
+                                        <input type="text" name="signupFName" id="signupFName" class="form-control" placeholder="First Name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="exampleInputName2">Last Name</label>
+                                        <input type="text" name="signupLName" id="signupLName" class="form-control" placeholder="Last Name" required>
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only" for="exampleInputEmail2">Email address</label>
@@ -138,13 +158,14 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                        <input type="password" name="signupPassword" id="signupPassword" class="form-control" placeholder="Use string 'admin' for admin" required>
+                                        <input type="password" name="signupPassword" id="signupPassword" class="form-control" placeholder="Use string 'admin' for admin"
+                                            required>
                                         <div class="help-block text-right">
                                             <a href="">Forget the password ?</a>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" onclick="register()" name="signup" class="btn btn-success btn-outline btn-block" value="Signup"> Register </button>
+                                        <button onclick="register()" name="signup" class="btn btn-success btn-outline btn-block" value="Signup"> Register </button>
                                     </div>
                                 </form>
                             </ul>
@@ -205,7 +226,7 @@
                     <h1 class="my-4">Final Project</h1>
                     <div class="list-group">
                         <a href="Home.php" class="list-group-item">Games</a>
-                       <!-- <a href="#" class="list-group-item">Vegetables (NYI)</a> -->
+                        <!-- <a href="#" class="list-group-item">Vegetables (NYI)</a> -->
                     </div>
 
                 </div>
@@ -240,24 +261,27 @@
                         </a>
                     </div>
 
-					<div class="form-group">
-						<script type="text/javascript" src="js/Search.js"></script>
-						<input class="form-control form-control-lg" placeholder="Search for an item" id="searchBar" type="text" onkeyup="search(this.value)" />
-						<p><div id="response"></div></p>
-					</div>
-					
-                    <div class="row">
-						<?php include "php/generateInventory.php" ?>
+                    <div class="form-group">
+                        <script type="text/javascript" src="js/Search.js"></script>
+                        <input class="form-control form-control-lg" placeholder="Search for an item" id="searchBar" type="text" onkeyup="search(this.value)"
+                        />
+                        <p>
+                            <div id="response"></div>
+                        </p>
                     </div>
 
+                    <div class="row">
+                        <?php include "php/generateInventory.php" ?>
                     </div>
-                    <!-- /.row -->
 
                 </div>
-                <!-- /.col-lg-9 -->
+                <!-- /.row -->
 
             </div>
-            <!-- /.row -->
+            <!-- /.col-lg-9 -->
+
+        </div>
+        <!-- /.row -->
 
         </div>
         <!-- /.container -->
