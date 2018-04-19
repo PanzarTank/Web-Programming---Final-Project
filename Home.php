@@ -87,7 +87,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown">
+                        <div class="nav-item dropdown" id="login_dropdown" style="display:none">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                                 <b>Login</b>
                                 <b class="caret"></b>
@@ -97,20 +97,6 @@
                                 <li>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <!--
-											Login via
-                                            <div class="social-buttons">
-                                                <a href="#" class="btn btn-fb">
-                                                    <i class="fa fa-facebook">
-                                                    </i> Facebook
-                                                </a>
-                                                <a href="#" class="btn btn-tw">
-                                                    <i class="fa fa-twitter">
-                                                    </i> Twitter
-                                                </a>
-                                            </div>
-                                            or
-									-->
                                             <div class="form" role="form" method="post" accept-charset="UTF-8" id="login-nav">
                                                 <div class="form-group">
                                                     <label class="sr-only" for="exampleInputEmail2">Email address</label>
@@ -119,31 +105,24 @@
                                                 <div class="form-group">
                                                     <label class="sr-only" for="exampleInputPassword2">Password</label>
                                                     <input type="password" name="loginPassword" id="loginPassword" class="form-control" placeholder="Password" required>
-                                                    <div class="help-block text-right">
-                                                        <a href="">Forget the password ?</a>
-                                                    </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <button onclick="login()" class="btn btn-success btn-outline btn-block" name="Login" id="Login" value="Login">
                                                         Sign in </button>
-                                                </div>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox"> Keep me logged-in</label>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
                             </ul>
-                        </li>
-                        <li class="nav-item dropdown">
+                        </div>
+                        <div class="nav-item dropdown" id="create_dropdown" style="display:none">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                                 <b>Create an Account</b>
                                 <b class="caret"></b>
                             </a>
                             <ul id="login-dp" class="dropdown-menu">
-                                <form class="form" role="form" method="post" accept-charset="UTF-8" id="signup-nav">
+                                <div class="form" role="form" method="post" accept-charset="UTF-8" id="signup-nav">
                                     <div class="form-group">
                                         <label class="sr-only" for="exampleInputName2">First Name</label>
                                         <input type="text" name="signupFName" id="signupFName" class="form-control" placeholder="First Name" required>
@@ -154,22 +133,26 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                                        <input type="email" name="signupEmail" id="signupEmail" class="form-control" placeholder="Use string 'admin' for admin" required>
+                                        <input type="email" name="signupEmail" id="signupEmail" class="form-control" placeholder="Email Address" required>
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                        <input type="password" name="signupPassword" id="signupPassword" class="form-control" placeholder="Use string 'admin' for admin"
-                                            required>
-                                        <div class="help-block text-right">
-                                            <a href="">Forget the password ?</a>
-                                        </div>
+                                        <input type="password" name="signupPassword" id="signupPassword" class="form-control" placeholder="Password" required>
                                     </div>
                                     <div class="form-group">
                                         <button onclick="register()" name="signup" class="btn btn-success btn-outline btn-block" value="Signup"> Register </button>
                                     </div>
-                                </form>
+                                </div>
                             </ul>
-                        </li>
+                        </div>
+                        <div class="nav-item dropdown" id="user_div" style="display:none">
+                            <a href="#" class="nav-link active dropdown-toggle" data-toggle="dropdown" id="user_msg"></a>
+                            <ul id="user_dp" class="dropdown-menu">
+                                <div class="container">
+                                    <button onclick="logout()" name="logout" class="btn btn-danger btn-outline btn-block" value="Signup"> Logout </button>
+                                </div>
+                            </ul>
+                        </div>
                     </ul>
                 </div>
             </div>
