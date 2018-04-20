@@ -28,7 +28,31 @@ function login() {
     var email = document.getElementById("loginEmail").value;
     var password = document.getElementById("loginPassword").value;
     //alert("email: " + email + "\n" + "password: " + password);
-    firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+    firebase.auth().signInWithEmailAndPassword(email, password).then(function(user)
+	{
+		if (user) {
+        // User is signed in.
+
+        document.getElementById("login_dropdown").style.display = "none";
+        document.getElementById("create_dropdown").style.display = "none";
+        document.getElementById("user_div").style.display = "block";
+
+        var user = firebase.auth().currentUser;
+        if (user != null) {
+            var email = user.email;
+            var uid = user.uid;
+            document.getElementById("user_msg").innerHTML = "Welcome User: " + email;
+			}
+		//AJAX for PHP session
+			var email = user.email;
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.open("POST", "php/ajaxlogin.php", true);
+			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlhttp.send("email="+email); 
+			console.log("email sent to ajaxlogin");
+		//End AJAX for PHP session
+		}
+	}).catch(function (error) {
         var errorCode = error.code;
         var errorMessage = error.message;
 
