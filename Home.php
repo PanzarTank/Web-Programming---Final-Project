@@ -87,7 +87,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <div class="nav-item dropdown" id="login_dropdown" style="display:none">
+                        <div class="nav-item dropdown" id="login_dropdown" style="display:block">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                                 <b>Login</b>
                                 <b class="caret"></b>
@@ -116,7 +116,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="nav-item dropdown" id="create_dropdown" style="display:none">
+                        <div class="nav-item dropdown" id="create_dropdown" style="display:block">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                                 <b>Create an Account</b>
                                 <b class="caret"></b>

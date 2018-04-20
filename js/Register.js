@@ -10,7 +10,7 @@ function register() {
         // User is signed in.
 
 		//AJAX to insert user into database
-				var email = user.email;
+			var email = user.email;
 			var xmlhttp = new XMLHttpRequest();
 			xmlhttp.open("POST", "php/ajaxregister.php", true);
 			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
