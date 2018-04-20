@@ -8,7 +8,7 @@ if(isset($_REQUEST['query'])){
 	echo $conn->error;
 	if ($result->num_rows > 0) 
 	{
-		echo "<table class=\"table table-hover\">";
+		echo "<div class=\"form-control\" style=\"position:absolute; z-index:100; width:97%;\"><table class=\"table\">";
 		while($row = $result->fetch_assoc()) 
 		{
 
@@ -18,7 +18,7 @@ if(isset($_REQUEST['query'])){
 
         
 		}
-		echo "</table>";
+		echo "</table></div>";
     } 
 }
 ?>

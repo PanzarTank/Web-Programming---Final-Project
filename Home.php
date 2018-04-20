@@ -246,11 +246,9 @@
 
                     <div class="form-group">
                         <script type="text/javascript" src="js/Search.js"></script>
-                        <input class="form-control form-control-lg" placeholder="Search for an item" id="searchBar" type="text" onkeyup="search(this.value)"
-                        />
-                        <p>
-                            <div id="response"></div>
-                        </p>
+                        <input class="form-control form-control-lg" placeholder="Search for an item" id="searchBar" type="text" onkeyup="search(this.value)" />
+                        <div id="response" style="width: 100%;">
+                        </div>
                     </div>
 
                     <div class="row">
