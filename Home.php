@@ -209,6 +209,12 @@
                     <h1 class="my-4">Final Project</h1>
                     <div class="list-group">
                         <a href="Home.php" class="list-group-item">Games</a>
+						<?php 
+							if(isset($_SESSION['perm_level']) && $_SESSION['perm_level']==3)
+							{
+								echo "<a href=\"Admin.php\" class=\"list-group-item\">Admin</a>";
+							}
+						?>
                         <!-- <a href="#" class="list-group-item">Vegetables (NYI)</a> -->
                     </div>
 

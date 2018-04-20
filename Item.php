@@ -9,7 +9,7 @@
 	$itemID = $_GET['id'];
 ?>
 
-    <!DOCTYPE html>
+        <!DOCTYPE html>
 
     <html lang="en">
 
@@ -31,11 +31,28 @@
         <link rel="stylesheet" href="css/p2css.css" rel="stylesheet">
 
         <!-- Custom Scripts -->
+        <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-database.js"></script>
+
+        <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyD06ne1IJ8AdpYBdAGS3zIs3cimSuzlQ2Y",
+                authDomain: "web-programming-final-pr-dccc6.firebaseapp.com",
+                databaseURL: "https://web-programming-final-pr-dccc6.firebaseio.com",
+                projectId: "web-programming-final-pr-dccc6",
+                storageBucket: "",
+                messagingSenderId: "107415577509"
+            };
+            firebase.initializeApp(config);
+        </script>
+
         <script type="text/javascript" src="js/Login.js"></script>
-
         <script type="text/javascript" src="js/Register.js"></script>
-
         <script type="text/javascript" src="js/PriceCalc.js"></script>
+		        <script type="text/javascript" src="js/Order.js"></script>
 
         <!-- Popper JS -->
         <script src="https://unpkg.com/popper.js"></script>
@@ -77,31 +94,17 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown">
+                        <div class="nav-item dropdown" id="login_dropdown" style="display:block">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                                 <b>Login</b>
                                 <b class="caret"></b>
                             </a>
-                  
-						  <ul id="login-dp" class="dropdown-menu">      
-						  <li>
+
+                            <ul id="login-dp" class="dropdown-menu">
+                                <li>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <!--
-											Login via
-                                            <div class="social-buttons">
-                                                <a href="#" class="btn btn-fb">
-                                                    <i class="fa fa-facebook">
-                                                    </i> Facebook
-                                                </a>
-                                                <a href="#" class="btn btn-tw">
-                                                    <i class="fa fa-twitter">
-                                                    </i> Twitter
-                                                </a>
-                                            </div>
-                                            or
-									-->
-                                            <form class="form" role="form" method="post" accept-charset="UTF-8" id="login-nav">
+                                            <div class="form" role="form" method="post" accept-charset="UTF-8" id="login-nav">
                                                 <div class="form-group">
                                                     <label class="sr-only" for="exampleInputEmail2">Email address</label>
                                                     <input type="email" name="loginEmail" id="loginEmail" class="form-control" placeholder="Email address" required>
@@ -109,52 +112,54 @@
                                                 <div class="form-group">
                                                     <label class="sr-only" for="exampleInputPassword2">Password</label>
                                                     <input type="password" name="loginPassword" id="loginPassword" class="form-control" placeholder="Password" required>
-                                                    <div class="help-block text-right">
-                                                        <a href="">Forget the password ?</a>
-                                                    </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <button type="submit" onclick="submitForm()" class="btn btn-success btn-outline btn-block" name="Login" id="Login" value="Login">
+                                                    <button onclick="login()" class="btn btn-success btn-outline btn-block" name="Login" id="Login" value="Login">
                                                         Sign in </button>
                                                 </div>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox"> Keep me logged-in</label>
-                                                </div>
-                                            </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </li>
                             </ul>
-                        </li>
-                        <li class="nav-item dropdown">
+                        </div>
+                        <div class="nav-item dropdown" id="create_dropdown" style="display:block">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                                 <b>Create an Account</b>
                                 <b class="caret"></b>
                             </a>
                             <ul id="login-dp" class="dropdown-menu">
-                                <form class="form" role="form" method="post" accept-charset="UTF-8" id="signup-nav">
+                                <div class="form" role="form" method="post" accept-charset="UTF-8" id="signup-nav">
                                     <div class="form-group">
                                         <label class="sr-only" for="exampleInputName2">First Name</label>
-                                        <input type="text" name="signupName" id="signupName" class="form-control" placeholder="First Name" required>
+                                        <input type="text" name="signupFName" id="signupFName" class="form-control" placeholder="First Name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="exampleInputName2">Last Name</label>
+                                        <input type="text" name="signupLName" id="signupLName" class="form-control" placeholder="Last Name" required>
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                                        <input type="email" name="signupEmail" id="signupEmail" class="form-control" placeholder="Use string 'admin' for admin" required>
+                                        <input type="email" name="signupEmail" id="signupEmail" class="form-control" placeholder="Email Address" required>
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                        <input type="password" name="signupPassword" id="signupPassword" class="form-control" placeholder="Use string 'admin' for admin" required>
-                                        <div class="help-block text-right">
-                                            <a href="">Forget the password ?</a>
-                                        </div>
+                                        <input type="password" name="signupPassword" id="signupPassword" class="form-control" placeholder="Password" required>
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" onclick="register()" name="signup" class="btn btn-success btn-outline btn-block" value="Signup"> Register </button>
+                                        <button onclick="register()" name="signup" class="btn btn-success btn-outline btn-block" value="Signup"> Register </button>
                                     </div>
-                                </form>
+                                </div>
                             </ul>
-                        </li>
+                        </div>
+                        <div class="nav-item dropdown" id="user_div" style="display:none">
+                            <a href="#" class="nav-link active dropdown-toggle" data-toggle="dropdown" id="user_msg"></a>
+                            <ul id="user_dp" class="dropdown-menu">
+                                <div class="container">
+                                    <button onclick="logout()" name="logout" class="btn btn-danger btn-outline btn-block" value="Signup"> Logout </button>
+                                </div>
+                            </ul>
+                        </div>
                     </ul>
                 </div>
             </div>
@@ -237,6 +242,56 @@
 
         </div>
         <!-- /.container -->
+		
+					<!-- Modal -->
+            <div id="myModalLoggedIn" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">Buying&nbsp;<?php echo " ".$name;  ?>
+						<div id="gameID" style="display:none;"><?php echo $itemID; ?></div>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="alert alert-dismissable">
+                                <form class="form" role="form" method="post" accept-charset="UTF-8" id="modal-order">
+                                    <div class="form-group">
+                                        <label>Price: $<div id="gamePrice" style="display: inline";><?php echo "$price"; ?></div></label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Quantity</label>
+                                        <select name="quantity" onChange="calculatePrice()" class="form-control col" id="quantity">
+											<?php
+												for ($i=0; $i<=$quantity;$i++)
+												{
+													echo "<option value=\"$i\">$i</option>";													
+												}
+											
+											?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-4">Total Price: </label>
+                                        <div class="col-4">
+                                            <input type="text" readonly class="form-control-plaintext" id="PicExtPrice" value="$0">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button onclick="placeOrder();return false;" class="btn btn-success btn-outline btn-block" name="place_order" id="place_order"
+                                            value="order">
+                                            Place Order </button>
+                                    </div>
+									<div class="alert alert-dismissible alert-success" style="display: none" id="orderSuccess">
+										<button type="button" class="close" data-dismiss="alert">&times;</button>
+										Order successfully placed! Redirecting...
+									</div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         <!-- Footer -->
         <footer class="py-5 bg-dark">

@@ -46,6 +46,13 @@ function login() {
 		//AJAX for PHP session
 			var email = user.email;
 			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange=function(){
+				if (xmlhttp.readyState == 4){
+					if(xmlhttp.status == 200){
+						window.location.replace("Home.php");
+					}
+				}
+			};
 			xmlhttp.open("POST", "php/ajaxlogin.php", true);
 			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xmlhttp.send("email="+email); 
@@ -64,6 +71,19 @@ function login() {
 function logout() {
     firebase.auth().signOut().then(function () {
         // Sign-out successful.
+		//php logout
+			var xmlhttp = new XMLHttpRequest();
+			 xmlhttp.onreadystatechange=function(){
+			   if (xmlhttp.readyState == 4){
+				  if(xmlhttp.status == 200){
+					window.location.replace("Home.php");
+				 }
+			   }
+			};
+			xmlhttp.open("GET", "php/logout.php", true);
+			xmlhttp.send(null); 
+			console.log("php logout");
+		//end php logout
     }).catch(function (error) {
         // An error happened.
         var errorCode = error.code;

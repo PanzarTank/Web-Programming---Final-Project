@@ -1,9 +1,7 @@
 <?php
  session_start();
  session_unset();
- 
- if(session_destroy())
- {
-  header("Location: ../Home.php");
- }
+ $_SESSION = array();
+ session_destroy();
+ echo "ok";
 ?>

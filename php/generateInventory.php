@@ -15,7 +15,7 @@
 				
 		echo	"<div class=\"col-lg-4 col-md-6 mb-4\">
 				<div class=\"card\">
-					<a href=\"#\">
+					<a href=\"Item?id=$itemID\">
 						<img class=\"card-img-top\" src=\"$imgdir\" alt=\"\">
 					</a>
 					<div class=\"card-body\">

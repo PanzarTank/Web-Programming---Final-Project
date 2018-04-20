@@ -1,14 +1,13 @@
 function calculatePrice() {
 
     //Get selected data  
-    var fruitprice = document.getElementById("fruit").value;
-    fruitprice = fruitprice.replace(/[^0-9.]/g, "");
+    var gamePrice = document.getElementById("gamePrice").innerHTML;
 
     var quantity = document.getElementById("quantity").value;
-    quantity = quantity.replace(/[^0-9.]/g, "");
 
     //calculate total value  
-    var total = fruitprice * quantity;
+    var total = gamePrice * quantity;
+	total = total.toFixed(2);
 
     //print value to  PicExtPrice 
     document.getElementById("PicExtPrice").value = ("$" + total);

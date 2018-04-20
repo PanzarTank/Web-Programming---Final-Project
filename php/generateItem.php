@@ -16,11 +16,15 @@
 				<h1>$name</h1>
 				<h3>Price: $$price</h3>
 				<p class=\"lead\">Currently in stock: $quantity</p>
-				<p>$description</p>
-				<button type=\"submit\" class=\"btn btn-info btn-outline btn-block\" data-toggle=\"modal\" data-target=\"#myModal\" value=\"buy\">Buy Now</button>
-		
-		
-		";
+				<p>$description</p>";
+				if(!isset($_SESSION["email"]))
+				{
+					echo "<button type=\"submit\" class=\"btn btn-info btn-outline btn-block\" data-toggle=\"modal\" data-target=\"#myModal\" value=\"buy\">Buy Now</button>";
+				}
+				else
+				{
+					echo "<button type=\"submit\" class=\"btn btn-info btn-outline btn-block\" data-toggle=\"modal\" data-target=\"#myModalLoggedIn\" value=\"buy\">Buy Now</button>";
+				}
 		}
 	}
 	else
