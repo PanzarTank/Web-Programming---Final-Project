@@ -13,6 +13,8 @@
 			$quantity = $row["itemQuantity"];
 				
 		echo	"<img src=\"$imgdir\" />
+				&nbsp
+				&nbsp
 				<h1>$name</h1>
 				<h3>Price: $$price</h3>
 				<p class=\"lead\">Currently in stock: $quantity</p>

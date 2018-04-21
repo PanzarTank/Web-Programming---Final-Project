@@ -75,6 +75,12 @@
             .card-body {
                 height: 350px;
             }
+
+            .jumbotron img{
+                display:block;
+                margin-left:auto;
+                margin-right:auto;
+            }
         </style>
 
     </head>
@@ -224,7 +230,7 @@
 
                 <div class="col-lg-9">
 					<br />
-					<div class="jumbotron">
+					<div class="jumbotron container">
 						<?php
 							include "php/generateItem.php";
 						?>

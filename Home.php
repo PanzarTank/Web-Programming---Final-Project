@@ -46,6 +46,7 @@
         <script type="text/javascript" src="js/Login.js"></script>
         <script type="text/javascript" src="js/Register.js"></script>
         <script type="text/javascript" src="js/PriceCalc.js"></script>
+        <script type="text/javascript" src="js/Quantity.js"></script>
 
         <!-- Popper JS -->
         <script src="https://unpkg.com/popper.js"></script>
@@ -67,6 +68,10 @@
         <style>
             .card-body {
                 height: 350px;
+            }
+
+            #adminButton {
+                text-align: left;
             }
         </style>
 
@@ -181,7 +186,7 @@
                 </div>
             </div>
 
-            <!-- Modal -->
+            <!-- Register Modal -->
             <div id="registerModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
 
@@ -202,20 +207,80 @@
                 </div>
             </div>
 
+            <!-- Admin Modal -->
+            <div id="adminModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header"> Set Stock of Items!
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="alert alert-dismissable">
+                                <form class="form" role="form" method="post" accept-charset="UTF-8" id="adminForm">
+                                    <div class="form-group">
+                                        <label>Choose an item</label>
+                                        <select class="form-control col" id="adminGame" name="adminGame">
+                                            <option value="1,19.99">Assassin's Creed&nbsp;/ $19.99</option>
+                                            <option value="2,29.99">Bloodborne&nbsp;/ $29.99</option>
+                                            <option value="3,49.99">Battlefield 1&nbsp;/ $49.99</option>
+                                            <option value="4,39.99">Crackdown 3&nbsp;/ $39.99</option>
+                                            <option value="5,59.99">Dishonored 2&nbsp;/ $59.99</option>
+                                            <option value="6,69.99">Call of Duty: Infinite Warfare&nbsp;/ $69.99</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Quantity</label>
+                                        <input type="number" min="0" class="form-control" id="adminquantity" name="adminquantity" placeholder="Enter an integer">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" onclick="Quantity()" class="btn btn-success btn-outline btn-block" id="setQuantity">
+                                            Set Stock Quantity</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary btn-outline" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Success-->
+            <div id="adminSuccess" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="alert alert-success alert-dismissable">
+                                <strong>Success!</strong> Quantity Set!
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
 
                 <div class="col-lg-3">
 
                     <h1 class="my-4">Final Project</h1>
                     <div class="list-group">
-                        <a href="Home.php" class="list-group-item">Games</a>
-						<?php 
+                        <a href="Home.php" style="text-align:left;" class="list-group-item btn btn-primary btn-outline">Games</a>
+                        <?php 
 							if(isset($_SESSION['perm_level']) && $_SESSION['perm_level']==3)
 							{
-								echo "<a href=\"Admin.php\" class=\"list-group-item\">Admin</a>";
+								echo "<button type=\"button\" data-toggle=\"modal\" data-target=\"#adminModal\" id=\"adminButton\" class=\"list-group-item btn btn-danger btn-outline\">Admin</button>";
 							}
 						?>
-                        <!-- <a href="#" class="list-group-item">Vegetables (NYI)</a> -->
                     </div>
 
                 </div>
@@ -252,7 +317,8 @@
 
                     <div class="form-group">
                         <script type="text/javascript" src="js/Search.js"></script>
-                        <input class="form-control form-control-lg" placeholder="Search for an item" id="searchBar" type="text" onkeyup="search(this.value)" />
+                        <input class="form-control form-control-lg" placeholder="Search for an item" id="searchBar" type="text" onkeyup="search(this.value)"
+                        />
                         <div id="response" style="width: 100%;">
                         </div>
                     </div>

@@ -28,7 +28,7 @@
 							<p class=\"card-text\">$description</p>
 					</div>
 					<div class=\"card-footer\">
-					<button type=\"submit\" class=\"btn btn-info btn-outline btn-block\" onclick=\"window.location.href='Item?id=$itemID'\">View Item</button>
+					<button type=\"submit\" class=\"btn btn-info btn-outline btn-block\" onclick=\"window.location.href='Item.php?id=$itemID'\">View Item</button>
 					</div>
 				</div>
 			</div>";

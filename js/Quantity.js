@@ -14,7 +14,7 @@ function Quantity() {
             if (response.indexOf("Quantity Set") >= 0) {
                 console.log(response);
                 $("#setQuantity").html('<i class="fa fa-refresh fa-spin fa-1x fa-fw"></i> &nbsp; Setting Quantity');
-                setTimeout(' window.location.href = "MemHome.php"; ', 2000);
+                setTimeout(' window.location.href = "Home.php"; ', 2000);
                 $('.modal').modal('hide');
                 $("#adminSuccess").modal();
             } else {
