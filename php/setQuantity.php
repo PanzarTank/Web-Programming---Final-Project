@@ -16,6 +16,7 @@ echo "<script type='text/javascript'>alert('$message');</script>";
 if (mysqli_query($conn,"UPDATE items SET itemQuantity=$quantity WHERE itemID=$game") === TRUE) {
     echo "Quantity Set";
 } else {
+	echo $conn->error;
     echo "Unsuccessful";
 }
 

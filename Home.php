@@ -47,7 +47,8 @@
         <script type="text/javascript" src="js/Register.js"></script>
         <script type="text/javascript" src="js/PriceCalc.js"></script>
         <script type="text/javascript" src="js/Quantity.js"></script>
-
+        <script type="text/javascript" src="js/Inv.js"></script>
+		
         <!-- Popper JS -->
         <script src="https://unpkg.com/popper.js"></script>
 
@@ -138,11 +139,13 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                                        <input type="email" name="signupEmail" id="signupEmail" class="form-control" placeholder="Email Address" required>
+                                        <input onkeyup="checkEmail();" type="email" name="signupEmail" id="signupEmail" class="form-control" placeholder="Email Address" required>
+										<div id="bademail" class="invalid-feedback" style="display:none;">That username is already taken</div>
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                        <input type="password" name="signupPassword" id="signupPassword" class="form-control" placeholder="Password" required>
+                                        <input onkeyup="checkPassword();" type="password" name="signupPassword" id="signupPassword" class="form-control" placeholder="Password" required>
+										<div id="badpassword" class="invalid-feedback" style="display:none;">Passwords must be at least 8 characters</div>
                                     </div>
                                     <div class="form-group">
                                         <button onclick="register()" name="signup" class="btn btn-success btn-outline btn-block" value="Signup"> Register </button>
@@ -221,12 +224,29 @@
                                     <div class="form-group">
                                         <label>Choose an item</label>
                                         <select class="form-control col" id="adminGame" name="adminGame">
+											<?php
+											$sql = "SELECT * FROM items";
+											$result = $conn->query($sql);
+											if ($result->num_rows > 0) 
+											{
+												while($row = $result->fetch_assoc()) 
+												{
+													$itemID = $row["itemID"];
+													$name = $row["itemName"];
+													$price = $row["itemPrice"];
+													$quantity = $row["itemQuantity"];
+													echo "<option value=\"$itemID,$price\">$name / $$price</option>";													
+												}
+											}
+											?>
+											<!--
                                             <option value="1,19.99">Assassin's Creed&nbsp;/ $19.99</option>
                                             <option value="2,29.99">Bloodborne&nbsp;/ $29.99</option>
                                             <option value="3,49.99">Battlefield 1&nbsp;/ $49.99</option>
                                             <option value="4,39.99">Crackdown 3&nbsp;/ $39.99</option>
                                             <option value="5,59.99">Dishonored 2&nbsp;/ $59.99</option>
                                             <option value="6,69.99">Call of Duty: Infinite Warfare&nbsp;/ $69.99</option>
+											-->
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -234,7 +254,7 @@
                                         <input type="number" min="0" class="form-control" id="adminquantity" name="adminquantity" placeholder="Enter an integer">
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" onclick="Quantity()" class="btn btn-success btn-outline btn-block" id="setQuantity">
+                                        <button onclick="Quantity(); return false;" class="btn btn-success btn-outline btn-block" id="setQuantity">
                                             Set Stock Quantity</button>
                                     </div>
                                 </form>
@@ -323,7 +343,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div id="inventorydiv" class="row">
                         <?php include "php/generateInventory.php" ?>
                     </div>
 

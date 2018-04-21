@@ -1,4 +1,5 @@
 <?php 
+	require "db.php";
 	$sql = "SELECT * FROM items";
 	$result = $conn->query($sql);
 

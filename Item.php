@@ -144,13 +144,15 @@
                                         <label class="sr-only" for="exampleInputName2">Last Name</label>
                                         <input type="text" name="signupLName" id="signupLName" class="form-control" placeholder="Last Name" required>
                                     </div>
-                                    <div class="form-group">
+									<div class="form-group">
                                         <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                                        <input type="email" name="signupEmail" id="signupEmail" class="form-control" placeholder="Email Address" required>
+                                        <input onkeyup="checkEmail();" type="email" name="signupEmail" id="signupEmail" class="form-control" placeholder="Email Address" required>
+										<div id="bademail" class="invalid-feedback" style="display:none;">That username is already taken</div>
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                        <input type="password" name="signupPassword" id="signupPassword" class="form-control" placeholder="Password" required>
+                                        <input onkeyup="checkPassword();" type="password" name="signupPassword" id="signupPassword" class="form-control" placeholder="Password" required>
+										<div id="badpassword" class="invalid-feedback" style="display:none;">Passwords must be at least 8 characters</div>
                                     </div>
                                     <div class="form-group">
                                         <button onclick="register()" name="signup" class="btn btn-success btn-outline btn-block" value="Signup"> Register </button>
@@ -290,7 +292,7 @@
                                     </div>
 									<div class="alert alert-dismissible alert-success" style="display: none" id="orderSuccess">
 										<button type="button" class="close" data-dismiss="alert">&times;</button>
-										Order successfully placed! Redirecting...
+										Order successfully placed!
 									</div>
                                 </form>
                             </div>

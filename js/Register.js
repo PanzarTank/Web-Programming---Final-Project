@@ -51,6 +51,40 @@ function register() {
         }
         console.log(error);
     });
+}
+
+function checkEmail(){
+			var email = document.getElementById("signupEmail").value;
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange=function(){
+				if (xmlhttp.readyState == 4){
+					if(xmlhttp.status == 200){
+						console.log("Response: " + this.responseText);
+						if(this.responseText == "bad")
+						{
+							document.getElementById("bademail").style.display = "block";
+						}
+						else{
+							document.getElementById("bademail").style.display = "none";
+						}
+					}
+				}
+			};
+			xmlhttp.open("POST", "php/ajaxemailcheck.php", true);
+			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlhttp.send("email="+email); 
+			console.log("email sent to ajaxemailcheck");
+}
+
+function checkPassword(){
+			var password = document.getElementById("signupPassword").value;
+			if(password.length < 8){
+				document.getElementById("badpassword").style.display = "block";
+			}
+			else{
+				document.getElementById("badpassword").style.display = "none";
+			}
+}
 
     /*
     var data = $("#signup-nav").serialize();
@@ -80,4 +114,3 @@ function register() {
         }
     });
     return false; */
-}
