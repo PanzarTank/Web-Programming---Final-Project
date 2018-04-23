@@ -48,7 +48,7 @@
         <script type="text/javascript" src="js/PriceCalc.js"></script>
         <script type="text/javascript" src="js/Quantity.js"></script>
         <script type="text/javascript" src="js/Inv.js"></script>
-		
+
         <!-- Popper JS -->
         <script src="https://unpkg.com/popper.js"></script>
 
@@ -68,7 +68,7 @@
 
         <style>
             .card-body {
-                height: 350px;
+                height: 300px;
             }
 
             #adminButton {
@@ -139,13 +139,15 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                                        <input onkeyup="checkEmail();" type="email" name="signupEmail" id="signupEmail" class="form-control" placeholder="Email Address" required>
-										<div id="bademail" class="invalid-feedback" style="display:none;">That username is already taken</div>
+                                        <input onkeyup="checkEmail();" type="email" name="signupEmail" id="signupEmail" class="form-control" placeholder="Email Address"
+                                            required>
+                                        <div id="bademail" class="invalid-feedback" style="display:none;">That username is already taken</div>
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                        <input onkeyup="checkPassword();" type="password" name="signupPassword" id="signupPassword" class="form-control" placeholder="Password" required>
-										<div id="badpassword" class="invalid-feedback" style="display:none;">Passwords must be at least 8 characters</div>
+                                        <input onkeyup="checkPassword();" type="password" name="signupPassword" id="signupPassword" class="form-control" placeholder="Password"
+                                            required>
+                                        <div id="badpassword" class="invalid-feedback" style="display:none;">Passwords must be at least 8 characters</div>
                                     </div>
                                     <div class="form-group">
                                         <button onclick="register()" name="signup" class="btn btn-success btn-outline btn-block" value="Signup"> Register </button>
@@ -210,6 +212,61 @@
                 </div>
             </div>
 
+            <div id="ordersModal" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-lg">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header success">Your Site's Current Orders
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Order ID</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Game</th>
+                                        <th scope="col">Number Purchased</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                            	$sql = "SELECT orderTable.orderID, Users.email, items.itemName, orderTable.quantity FROM orderTable, Users, items WHERE orderTable.userID=Users.userID AND items.itemID=orderTable.itemID;";
+                                $result = $conn->query($sql);
+
+                                if ($result->num_rows > 0) 
+                                {
+                                    while($row = $result->fetch_assoc()) 
+                                    {
+                                        $orderID = $row["orderID"];
+                                        $email = $row["email"];
+                                        $itemName = $row["itemName"];
+                                        $quantity = $row["quantity"];
+                                        
+                                        print "<tr>";
+                                        print "<th scope=\"row\">$orderID</th>";
+                                        print "<td>$email</td>";
+                                        print "<td>$itemName</td>";
+                                        print "<td>$quantity</td>";
+                                        print "</tr>";
+                                    }
+                                }
+                                else
+                                {
+                                    echo "no inventory :(";
+                                }
+                            ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Admin Modal -->
             <div id="adminModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
@@ -224,7 +281,7 @@
                                     <div class="form-group">
                                         <label>Choose an item</label>
                                         <select class="form-control col" id="adminGame" name="adminGame">
-											<?php
+                                            <?php
 											$sql = "SELECT * FROM items";
 											$result = $conn->query($sql);
 											if ($result->num_rows > 0) 
@@ -239,7 +296,7 @@
 												}
 											}
 											?>
-											<!--
+                                                <!--
                                             <option value="1,19.99">Assassin's Creed&nbsp;/ $19.99</option>
                                             <option value="2,29.99">Bloodborne&nbsp;/ $29.99</option>
                                             <option value="3,49.99">Battlefield 1&nbsp;/ $49.99</option>
@@ -261,6 +318,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
+                            <button type="button" class="btn btn-info btn-outline" data-dismiss="modal" data-toggle="modal" data-target="#ordersModal">Check Orders</button>
                             <button type="button" class="btn btn-primary btn-outline" data-dismiss="modal">Close</button>
                         </div>
                     </div>
