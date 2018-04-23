@@ -155,7 +155,7 @@
 										<div id="badpassword" class="invalid-feedback" style="display:none;">Passwords must be at least 8 characters</div>
                                     </div>
                                     <div class="form-group">
-                                        <button onclick="register()" name="signup" class="btn btn-success btn-outline btn-block" value="Signup"> Register </button>
+                                        <button onclick="register()" name="signup" class="btn btn-success btn-outline btn-block" value="Signup" id="btnSignup"> Register </button>
                                     </div>
                                 </div>
                             </ul>

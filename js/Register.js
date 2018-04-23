@@ -63,9 +63,11 @@ function checkEmail(){
 						if(this.responseText == "bad")
 						{
 							document.getElementById("bademail").style.display = "block";
+							document.getElementById("btnSignup").disabled = true;
 						}
 						else{
 							document.getElementById("bademail").style.display = "none";
+							document.getElementById("btnSignup").disabled = false;
 						}
 					}
 				}
@@ -80,9 +82,11 @@ function checkPassword(){
 			var password = document.getElementById("signupPassword").value;
 			if(password.length < 8){
 				document.getElementById("badpassword").style.display = "block";
+				document.getElementById("btnSignup").disabled = true;
 			}
 			else{
 				document.getElementById("badpassword").style.display = "none";
+				document.getElementById("btnSignup").disabled = false;
 			}
 }
 

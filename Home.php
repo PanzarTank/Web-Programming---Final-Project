@@ -47,6 +47,7 @@
         <script type="text/javascript" src="js/Register.js"></script>
         <script type="text/javascript" src="js/PriceCalc.js"></script>
         <script type="text/javascript" src="js/Quantity.js"></script>
+		<script type="text/javascript" src="js/AddItem.js"></script>
         <script type="text/javascript" src="js/Inv.js"></script>
 
         <!-- Popper JS -->
@@ -150,7 +151,7 @@
                                         <div id="badpassword" class="invalid-feedback" style="display:none;">Passwords must be at least 8 characters</div>
                                     </div>
                                     <div class="form-group">
-                                        <button onclick="register()" name="signup" class="btn btn-success btn-outline btn-block" value="Signup"> Register </button>
+                                        <button onclick="register()" name="signup" class="btn btn-success btn-outline btn-block" value="Signup" id="btnSignup"> Register </button>
                                     </div>
                                 </div>
                             </ul>
@@ -266,6 +267,59 @@
                     </div>
                 </div>
             </div>
+			
+			  <div id="newInvModal" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-lg">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header success">Add an item to your inventory
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body container">
+							
+							<div class="form-group">
+							  <label class="col-form-label" for="inputTitle">Title</label>
+							  <input class="form-control" id="inputTitle" placeholder="Game title" type="text">
+							</div>
+							
+							<div class="form-group">
+							  <label class="control-label">Price</label>
+							  <div class="form-group">
+								<div class="input-group mb-3">
+								  <div class="input-group-prepend">
+									<span class="input-group-text">$</span>
+								  </div>
+								  <input class="form-control" type="text" placeholder="Game price" id="inputPrice">
+								</div>
+							  </div>
+							</div>
+							
+							<div class="form-group">
+							  <label for="inputDescription">Description</label>
+							  <textarea class="form-control" placeholder="Game description" id="inputDescription" rows="3"></textarea>
+							</div>
+							
+							<div class="form-group">
+							  <label class="col-form-label" for="inputQuantity">Quantity</label>
+							  <input class="form-control" id="inputQuantity" placeholder="Amount in stock" type="text">
+							</div>
+							
+							<div class="form-group">
+							  <label class="col-form-label" for="inputImage">Image Location</label>
+							  <input class="form-control" id="inputImage" placeholder="File path or URL" type="text">
+							</div>
+							
+                        </div>
+                        <div class="modal-footer">
+                            <div class="form-group">
+                                        <button onclick="addItem(); return false;" class="btn btn-success btn-outline btn-block" id="addItem">
+                                            Add Item</button>
+                                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Admin Modal -->
             <div id="adminModal" class="modal fade" role="dialog">
@@ -296,14 +350,6 @@
 												}
 											}
 											?>
-                                                <!--
-                                            <option value="1,19.99">Assassin's Creed&nbsp;/ $19.99</option>
-                                            <option value="2,29.99">Bloodborne&nbsp;/ $29.99</option>
-                                            <option value="3,49.99">Battlefield 1&nbsp;/ $49.99</option>
-                                            <option value="4,39.99">Crackdown 3&nbsp;/ $39.99</option>
-                                            <option value="5,59.99">Dishonored 2&nbsp;/ $59.99</option>
-                                            <option value="6,69.99">Call of Duty: Infinite Warfare&nbsp;/ $69.99</option>
-											-->
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -312,12 +358,13 @@
                                     </div>
                                     <div class="form-group">
                                         <button onclick="Quantity(); return false;" class="btn btn-success btn-outline btn-block" id="setQuantity">
-                                            Set Stock Quantity</button>
+                                            Set Item Quantity</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
                         <div class="modal-footer">
+							<button type="button" class="btn btn-info btn-outline" data-dismiss="modal" data-toggle="modal" data-target="#newInvModal">Add Inventory</button>
                             <button type="button" class="btn btn-info btn-outline" data-dismiss="modal" data-toggle="modal" data-target="#ordersModal">Check Orders</button>
                             <button type="button" class="btn btn-primary btn-outline" data-dismiss="modal">Close</button>
                         </div>
@@ -336,7 +383,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="alert alert-success alert-dismissable">
-                                <strong>Success!</strong> Quantity Set!
+                                <strong>Success!</strong> <div id="successText">Quantity Set!</div>
                             </div>
                         </div>
                         <div class="modal-footer">
